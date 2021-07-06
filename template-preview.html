@@ -1,0 +1,128 @@
+<!--This template is based on: https://dribbble.com/shots/6531694-Marketing-Dashboard by Gregoire Vella -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Templates</title>
+    <meta name="description" content="description here">
+    <meta name="keywords" content="keywords,here">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/custom-color.css">
+    <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <link href="http://fonts.cdnfonts.com/css/circular-std-book" rel="stylesheet">
+    <!--Replace with your tailwind.css once created-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <style>
+        .nunito {
+            font-family: 'nunito', font-sans;
+        }
+
+        .border-b-1 {
+            border-bottom-width: 1px;
+        }
+
+        hover\:border-none:hover {
+            border-style: none;
+        }
+
+        #sidebar:hover span {
+            opacity: 1;
+        }
+
+        .ct-series-a .ct-line {
+            /* Set the colour of this series line */
+            stroke: #013281;
+        }
+
+        .ct-series-b .ct-line {
+            /* Set the colour of this series line */
+            stroke: #1E86FF;
+        }
+
+        .ct-series-c .ct-line {
+            /* Set the colour of this series line */
+            stroke: #FAC345;
+        }
+
+        body {
+            font-family: 'Circular Std Book' !important;
+        }
+
+        @media screen and (max-width: 1145px) {
+            #search {
+                width: auto;
+            }
+        }
+
+        @media screen and (max-width: 639px) {
+            #search {
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 585px) {
+            #search {
+                width: 100%;
+            }
+        }
+    </style>
+
+</head>
+
+<body class="flex h-screen bg-blue-200">
+    <div class="rounded-2xl my-7 ml-14 mr-7 bg-white flex w-full overflow-hidden">
+        <div class="py-7 px-7 sm:pr-7 w-1/4 bg-gray-100 h-full">
+            <div class="flex justify-between items-center mb-8">
+                <div class="p-2 rounded-lg bg-white text-blue-800 font-bold">Marketing</div>
+                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.9166 18.8606V18.8606C5.33257 19.1739 4.60517 18.9544 4.2919 18.3704C4.1656 18.1349 4.1215 17.864 4.1666 17.6006L5.0346 12.5776L1.3586 9.01863V9.01863C0.886066 8.55393 0.879712 7.79416 1.34441 7.32163C1.52797 7.13496 1.76755 7.01345 2.0266 6.97562L7.1086 6.24262L9.3786 1.66862V1.66862C9.67774 1.07105 10.4047 0.829124 11.0022 1.12826C11.236 1.24528 11.4256 1.43486 11.5426 1.66862L13.8126 6.24262L18.8946 6.97562V6.97562C19.5504 7.07139 20.0044 7.68064 19.9086 8.33643C19.8708 8.59548 19.7493 8.83506 19.5626 9.01862L15.8846 12.5756L16.7526 17.5986V17.5986C16.8657 18.2517 16.4279 18.8727 15.7749 18.9858C15.5107 19.0315 15.2388 18.9874 15.0026 18.8606L10.4586 16.4916L5.9166 18.8606Z" stroke="#B2C1D9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    
+            </div>
+            <div class="mb-3 flex items-center justify-between">
+                <div class="text-2xl font-semibold text-blue-900">Car buyers are saving thousands with these 3 simple tips</div>
+            </div>
+            <div class="mb-8 text-gray-400 mb-14">
+                One page squeeze: "See These 3 Simple Things Dealers Don’t Want You To know That Can...
+            </div>
+            <div class="flex flex-row items-center">
+                <img src="assets/images/avatar2.png" class="rounded-full" />
+                <div class="ml-3">
+                    <div class="text-blue-900">Anny Thomas</div>
+                    <div class="text-gray-400">Designer</div>
+                </div>
+            </div>
+        </div>
+        <div class="w-3/4 overflow-y-scroll p-8">
+            <div class="flex">
+                <div
+                    class="items-center overflow-hidden flex flex-1 =border border-gray-300 rounded-lg w-1/2 border border-gray-300">
+                    <input class="focus:outline-none text-sm sm:text-lg py-5 pl-2 w-1/2 h-full"
+                        type="text" placeholder="Enter subdomain" checked/>
+                    <div class="w-1/2 bg-gray-300 text-sm sm:text-lg py-5 pl-2 lg:p-5">phonesites.com
+                    </div>
+                </div>
+                <div class="w-1/2 flex justify-end">
+                    <button
+                        class="ml-auto flex items-center justify-center bg-blue-500 hover:bg-blue-900 font-semibold text-white py-3 px-4 rounded-lg w-full 2xl:w-auto xl:w-auto lg:w-auto md:w-auto">
+                        Create New Website
+                    </button>
+                </div>
+            </div>
+            <img src="assets/images/template7.png" class="w-full" />
+        </div>
+    </div>
+</body>
+</html>

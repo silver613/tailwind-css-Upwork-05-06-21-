@@ -1,0 +1,717 @@
+<!--This template is based on: https://dribbble.com/shots/6531694-Marketing-Dashboard by Gregoire Vella -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create website</title>
+    <meta name="description" content="description here">
+    <meta name="keywords" content="keywords,here">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/custom-color.css">
+    <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <link href="http://fonts.cdnfonts.com/css/circular-std-book" rel="stylesheet">
+    <!--Replace with your tailwind.css once created-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <style>
+        .nunito {
+            font-family: 'nunito', font-sans;
+        }
+
+        .border-b-1 {
+            border-bottom-width: 1px;
+        }
+
+        hover\:border-none:hover {
+            border-style: none;
+        }
+
+        #sidebar:hover span {
+            opacity: 1;
+        }
+
+        .ct-series-a .ct-line {
+            /* Set the colour of this series line */
+            stroke: #013281;
+        }
+
+        .ct-series-b .ct-line {
+            /* Set the colour of this series line */
+            stroke: #1E86FF;
+        }
+
+        .ct-series-c .ct-line {
+            /* Set the colour of this series line */
+            stroke: #FAC345;
+        }
+
+        body {
+            font-family: 'Circular Std Book' !important;
+        }
+
+        .tab-bottom {
+            bottom: -4px;
+        }
+
+        .tbl-image {
+            min-width: 60%;
+        }
+
+        .calendar-body {
+            width: fit-content
+        }
+
+        @media screen and (max-width: 700px) {
+            #static-menu {
+                width: 90vw;
+                padding-left: 1em;
+                padding-right: 1em;
+            }
+
+            #calendar {
+                left: 0
+            }
+
+            #week-container {
+                padding-left: 0px;
+                padding-right: 0px;
+            }
+        }
+
+        #tippy-3 {
+            background-color: rgba(59, 130, 246, 0.5) !important;
+        }
+    </style>
+
+</head>
+
+<body class="flex h-screen bg-gray-100">
+
+    <!-- Side bar-->
+    <div class="flex flex-col items-center w-16 pb-4 overflow-auto border-r custom-bg-blue-900 pt-6 hidden lg:flex">
+        <a class="flex items-center justify-center flex-shrink-0 w-full h-16 " href="#">
+            <img src="./assets/images/sm-logo.png" />
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M15.7138 6.8382C18.1647 9.28913 18.1647 13.2629 15.7138 15.7138C13.2629 18.1647 9.28913 18.1647 6.8382 15.7138C4.38727 13.2629 4.38727 9.28913 6.8382 6.8382C9.28913 4.38727 13.2629 4.38727 15.7138 6.8382"
+                    stroke="#B2C1D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M19 19L15.71 15.71" stroke="#B2C1D9" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300"
+            href="./index.html">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M16.842 5.29908L10.842 0.632082C9.7586 -0.210694 8.2414 -0.210694 7.158 0.632082L1.158 5.29908H1.158C0.4276 5.86726 0.00028 6.74071 0 7.66608V15C-2.50178e-07 16.6569 1.34315 18 3 18H15C16.6569 18 18 16.6569 18 15V7.66608V7.66596C17.9997 6.74059 17.5723 5.86715 16.8419 5.29901L16.842 5.29908Z"
+                    fill="#B2C1D9" />
+            </svg>
+
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
+            <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M3.24866 1H6.24866C7.07666 1 7.74866 1.672 7.74866 2.5V8.5C7.74866 9.328 7.07666 10 6.24866 10H3.24866C2.42066 10 1.74866 9.328 1.74866 8.5V2.5C1.74866 1.672 2.42066 1 3.24866 1Z"
+                    fill="#B2C1D9" stroke="#B2C1D9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M3.24866 14.5H6.24866C7.07666 14.5 7.74866 15.172 7.74866 16V17.5C7.74866 18.328 7.07666 19 6.24866 19H3.24866C2.42066 19 1.74866 18.328 1.74866 17.5V16C1.74866 15.172 2.42066 14.5 3.24866 14.5Z"
+                    fill="#B2C1D9" stroke="#B2C1D9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M16.7472 19H13.7472C12.9192 19 12.2472 18.328 12.2472 17.5V11.5C12.2472 10.672 12.9192 10 13.7472 10H16.7472C17.5752 10 18.2472 10.672 18.2472 11.5V17.5C18.2472 18.328 17.5752 19 16.7472 19Z"
+                    fill="#B2C1D9" stroke="#B2C1D9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M16.7472 5.5H13.7472C12.9192 5.5 12.2472 4.828 12.2472 4V2.5C12.2472 1.672 12.9192 1 13.7472 1H16.7472C17.5752 1 18.2472 1.672 18.2472 2.5V4C18.2472 4.828 17.5752 5.5 16.7472 5.5Z"
+                    fill="#B2C1D9" stroke="#B2C1D9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
+            <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M18.5 18H3.5C2.39543 18 1.5 17.1046 1.5 16V2V2C1.5 0.89543 2.39543 0 3.5 0H18.5C19.6046 -4.82823e-08 20.5 0.89543 20.5 2V16C20.5 17.1046 19.6046 18 18.5 18Z"
+                    fill="white" />
+                <path d="M1.5 5H20.5" stroke="#013281" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+
+
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-auto rounded hover:bg-gray-300" href="#">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M1 14V6V6C1 3.23858 3.23858 1 6 1H14C16.7614 1 19 3.23858 19 6V14C19 16.7614 16.7614 19 14 19H6H6C3.23858 19 1 16.7614 1 14H1Z"
+                    fill="white" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M8 8V8C8 6.89543 8.89543 6 10 6C11.1046 6 12 6.89543 12 8C12 9.10457 11.1046 10 10 10"
+                    stroke="#013281" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M10 11.5V10" stroke="#013281" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path
+                    d="M9.99995 13.95V13.95C9.97234 13.95 9.94995 13.9724 9.94995 14C9.94995 14.0276 9.97234 14.05 9.99995 14.05C10.0276 14.05 10.05 14.0276 10.05 14C10.05 13.9724 10.0276 13.95 9.99995 13.95V13.95"
+                    stroke="#013281" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 mt-3 h-10 rounded hover:bg-gray-300" href="#">
+            <img class="p-1 rounded-full" src="assets/images/avatar2.png" />
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 mt-3 h-10 rounded hover:bg-gray-300" href="#">
+            <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M9 17.392V5.50301C9 4.81301 8.645 4.17201 8.06 3.80701L4.06 1.30701C2.728 0.475012 1 1.43201 1 3.00301V14.891C1 15.581 1.355 16.222 1.94 16.587L5.94 19.087C7.272 19.92 9 18.962 9 17.392Z"
+                    fill="white" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M13 9H19" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M17 11L19 9L17 7" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M9 17H13C14.105 17 15 16.105 15 15V14" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M15 4V3C15 1.895 14.105 1 13 1H3" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </a>
+    </div>
+
+    <!-- tool bar -->
+    <div class="flex flex-col items-center w-96 pb-4 overflow-auto border-r bg-white pt-6 hidden lg:flex">
+        <div class="p-7 w-full">
+            <div class="w-full flex flex-row justify-between border-b-1 border-gray-300 pb-8">
+                <div class="text-blue-800 text-2xl font-semibold flex items-center">
+                    Home page
+                    <svg class="ml-4" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 10L12 14L16 10" stroke="#848698" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+
+                </div>
+                <div>
+                    <i class="ml-auto material-icons text-md text-gray-300 hover:text-blue-500 cursor-pointer">close</i>
+                </div>
+            </div>
+            <div class="w-full flex">
+                <div class="w-1/2">
+                    <div class="text-blue-800 font-bold my-8">Navigation</div>
+                    <div class="text-gray-400 mb-8">Headline</div>
+                    <div class="text-gray-400 mb-8">Text</div>
+                    <div class="text-gray-400 mb-8">Image</div>
+                    <div class="text-gray-400 mb-8">Youtube </div>
+                    <div class="text-gray-400 mb-8">Video</div>
+                    <div class="text-gray-400 mb-8">Button</div>
+                    <div class="text-gray-400 mb-8">Code</div>
+                    <div class="text-gray-400 mb-8">Spacer</div>
+                </div>
+                <div class="w-1/2">
+                    <div class="w-full my-8 relative rounded-xl overflow-hidden">
+                        <svg class="w-full" width="183" height="116" viewBox="0 0 183 116" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.05" width="182.501" height="116" rx="15" fill="#013281" />
+                            <rect opacity="0.7" x="47.8691" y="24" width="87.7602" height="8" rx="4" fill="#C2CDE0" />
+                            <rect x="23.9346" y="44" width="134.632" height="8" rx="4" fill="#D1D9E8" />
+                            <rect x="48.8662" y="56" width="84.7684" height="8" rx="4" fill="#D1D9E8" />
+                            <rect opacity="0.2" x="70.8066" y="83" width="41.8402" height="13" rx="4.05634"
+                                fill="#013281" />
+                        </svg>
+                        <div class="w-full h-full relative opacity-0 hover:opacity-100">
+                            <div
+                                class="cursor-pointer absolute bottom-0 left-0 w-full py-2 text-center bg-blue-700 text-white text-sm">
+                                Add this section
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="mb-8 w-full relative rounded-xl overflow-hidden">
+                        <svg class="w-full" width="183" height="116" viewBox="0 0 183 116" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.05" width="182.501" height="116" rx="15" fill="#013281" />
+                            <rect opacity="0.7" x="11.9678" y="26" width="67.8147" height="8" rx="4" fill="#C2CDE0" />
+                            <path opacity="0.1"
+                                d="M91.749 0H168C176.284 0 183 6.71573 183 15V101C183 109.284 176.284 116 168 116H91.749V0Z"
+                                fill="#013281" />
+                            <rect x="12" y="40" width="51.8583" height="8" rx="4" fill="#D1D9E8" />
+                            <rect opacity="0.2" x="11.9678" y="82" width="43.8801" height="13.6338" rx="3.71831"
+                                fill="#013281" />
+                        </svg>
+
+                        <div class="w-full h-full relative opacity-0 hover:opacity-100">
+                            <div
+                                class="cursor-pointer absolute bottom-0 left-0 w-full py-2 text-center bg-blue-700 text-white text-sm">
+                                Add this section
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8 relative rounded-xl overflow-hidden">
+                        <svg class="w-full" width="183" height="116" viewBox="0 0 183 116" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.05" width="182.501" height="116" rx="15" fill="#013281" />
+                            <path opacity="0.1"
+                                d="M91.749 0H15.4983C7.21407 0 0.498344 6.71573 0.498344 15V101C0.498344 109.284 7.21407 116 15.4983 116H91.749V0Z"
+                                fill="#013281" />
+                            <rect opacity="0.7" x="104.215" y="26" width="67.8147" height="8" rx="4" fill="#C2CDE0" />
+                            <rect x="104.215" y="40" width="51.8583" height="8" rx="4" fill="#D1D9E8" />
+                            <rect opacity="0.2" x="104.215" y="82" width="43.8801" height="13.6338" rx="3.71831"
+                                fill="#013281" />
+                        </svg>
+                        <div class="w-full h-full relative opacity-0 hover:opacity-100">
+                            <div
+                                class="cursor-pointer absolute bottom-0 left-0 w-full py-2 text-center bg-blue-700 text-white text-sm">
+                                Add this section
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full mb-8 relative rounded-xl overflow-hidden">
+                        <svg class="w-full" width="183" height="116" viewBox="0 0 183 116" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.1" width="182.501" height="116" rx="15" fill="#013281" />
+                            <rect opacity="0.7" x="18.9482" y="23" width="67.8147" height="8" rx="4" fill="#C2CDE0" />
+                            <rect x="18.9482" y="39" width="85.7657" height="8" rx="4" fill="#CDD6E6" />
+                            <rect x="18.9482" y="51" width="72.8011" height="8" rx="4" fill="#CDD6E6" />
+                            <rect opacity="0.2" x="18.9482" y="75" width="43.8801" height="13.6338" rx="3.71831"
+                                fill="#013281" />
+                        </svg>
+                        <div class="w-full h-full relative opacity-0 hover:opacity-100">
+                            <div
+                                class="cursor-pointer absolute bottom-0 left-0 w-full py-2 text-center bg-blue-700 text-white text-sm">
+                                Add this section
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full mb-8 relative rounded-xl overflow-hidden">
+                        <svg class="w-full" width="183" height="116" viewBox="0 0 183 116" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect width="182.501" height="116" rx="15" fill="#F2F4F8" />
+                            <path opacity="0.1"
+                                d="M149.591 116V76C149.591 67.7157 142.875 61 134.591 61L48.9069 61C40.6226 61 33.9069 67.7157 33.9069 76L33.9069 116L149.591 116Z"
+                                fill="#013281" />
+                            <rect opacity="0.7" x="47.8691" y="24" width="87.7602" height="8" rx="4" fill="#C2CDE0" />
+                            <rect opacity="0.7" x="33.9072" y="40" width="115.684" height="8" rx="4" fill="#C2CDE0" />
+                        </svg>
+                        <div class="w-full h-full relative opacity-0 hover:opacity-100">
+                            <div
+                                class="cursor-pointer absolute bottom-0 left-0 w-full py-2 text-center bg-blue-700 text-white text-sm">
+                                Add this section
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full mb-8 relative rounded-xl overflow-hidden">
+                        <svg class="w-full" width="183" height="116" viewBox="0 0 183 116" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect width="182.501" height="116" rx="15" fill="#F2F4F8" />
+                            <path opacity="0.1"
+                                d="M149.591 116V76C149.591 67.7157 142.875 61 134.591 61L48.9069 61C40.6226 61 33.9069 67.7157 33.9069 76L33.9069 116L149.591 116Z"
+                                fill="#013281" />
+                            <rect opacity="0.7" x="47.8691" y="24" width="87.7602" height="8" rx="4" fill="#C2CDE0" />
+                            <rect opacity="0.7" x="33.9072" y="40" width="115.684" height="8" rx="4" fill="#C2CDE0" />
+                        </svg>
+                        <div class="w-full h-full relative opacity-0 hover:opacity-100">
+                            <div
+                                class="cursor-pointer absolute bottom-0 left-0 w-full py-2 text-center bg-blue-700 text-white text-sm">
+                                Add this section
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="h-full overflow-y-scroll flex flex-row flex-wrap flex-1 flex-grow content-start custom-m-bg-color">
+        <!-- Navbar Start -->
+        <div class="h-auto w-full flex flex-wrap">
+            <nav id="mobile-menu"
+                class="w-full h-16 bg-white md:max-w-md flex items-center order-1 md:order-1 md:hidden mb-4">
+                <div class=" w-full flex items-center px-6 bg-white">
+                    <h1 class="text-lg font-bold text-xl md:text-3xl text-black italic">Phonesites</h1>
+                    <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 ml-auto rounded hover:bg-gray-300"
+                        href="#">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M15.7138 6.8382C18.1647 9.28913 18.1647 13.2629 15.7138 15.7138C13.2629 18.1647 9.28913 18.1647 6.8382 15.7138C4.38727 13.2629 4.38727 9.28913 6.8382 6.8382C9.28913 4.38727 13.2629 4.38727 15.7138 6.8382"
+                                stroke="#B2C1D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M19 19L15.71 15.71" stroke="#B2C1D9" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                    <a class="flex items-center justify-center w-10 h-10 rounded hover:bg-gray-300" href="#">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="7" width="16" height="2" rx="1" fill="#B2C1D9" />
+                            <rect x="4" y="14" width="16" height="2" rx="1" fill="#B2C1D9" />
+                        </svg>
+                    </a>
+                </div>
+            </nav>
+            <nav id="header" class="w-full sm:h-10 md:h-20  flex items-center mb-3 md:mb-0 order-2 md:order-2">
+                <div class="px-2 w-full flex sm:items-center px-6 flex-col sm:flex-row">
+                    <div class="flex items-center">
+                        <h1 class="text-lg font-bold text-xl md:text-3xl text-black align-middle flex items-center">Home
+                            page</h1>
+                        <svg class="ml-4" width="17" height="10" viewBox="0 0 17 10" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.1748 1.86499L8.84147 8.53166L15.5081 1.86499" stroke="#0B0F32" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    
+                    <div class="mt-6 sm:mt-0 flex ml-auto sm:flex-row flex-row-reverse w-full sm:w-auto justify-between">
+                        <button
+                            class=" justify-center items-center flex border text-center border-blue-500 w-32 sm:w-auto rounded-md py-2 px-4 text-blue-500 hover:bg-gray-400 text-sm md:text-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <svg class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M6.07875 12.312C5.97375 12.118 5.97375 11.882 6.07875 11.689C7.33975 9.35501 9.66975 7.33301 11.9998 7.33301C14.3298 7.33301 16.6597 9.35501 17.9207 11.688C18.0257 11.882 18.0257 12.118 17.9207 12.311C16.6597 14.645 14.3298 16.667 11.9998 16.667C9.66975 16.667 7.33975 14.645 6.07875 12.312Z"
+                                    fill="#1E86FF" />
+                                <path
+                                    d="M13.2374 10.7626C13.9209 11.446 13.9209 12.554 13.2374 13.2374C12.554 13.9209 11.446 13.9209 10.7626 13.2374C10.0791 12.554 10.0791 11.446 10.7626 10.7626C11.446 10.0791 12.554 10.0791 13.2374 10.7626Z"
+                                    fill="#1E86FF" />
+                                <path
+                                    d="M13.2374 10.7626C13.9209 11.446 13.9209 12.554 13.2374 13.2374C12.554 13.9209 11.446 13.9209 10.7626 13.2374C10.0791 12.554 10.0791 11.446 10.7626 10.7626C11.446 10.0791 12.554 10.0791 13.2374 10.7626"
+                                    stroke="#EFF1F7" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M7.5 3H5.25C4.007 3 3 4.007 3 5.25V7.5" stroke="#1E86FF" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M3 16.5V18.75C3 19.993 4.007 21 5.25 21H7.5" stroke="#1E86FF"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M16.5 21H18.75C19.993 21 21 19.993 21 18.75V16.5" stroke="#1E86FF"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M21 7.5V5.25C21 4.007 19.993 3 18.75 3H16.5" stroke="#1E86FF"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            Preview
+                        </button>
+                        <button
+                            class="text-center justify-center sm:ml-3 items-center flex border border-blue-500 w-32 sm:w-auto rounded-md py-2 px-4 text-white bg-blue-700 hover:bg-blue-800 text-sm md:text-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- Pages container start -->
+        <div class="h-auto w-full flex items-center flex-wrap px-6 mb-4" id="nav-bar">
+            <nav id="tabs" class="order-4 w-full md:order-1 md-shrink-0">
+                <div x-data="setup()" class="w-full border-b-4 h-12 relative">
+                    <ul class="flex items-center absolute">
+                        <template x-for="(tab, index) in tabs" :key="index">
+                            <li :onclick="tabclick(tab, index, activeTab)"
+                                class="cursor-pointer py-2 px-2 sm:px-4 text-gray-500"
+                                :class="activeTab===index ? 'text-blue-900' : ''" @click="activeTab = index"
+                                x-text="tab"></li>
+                        </template>
+
+                    </ul>
+                    <ul class="flex absolute left-0 tab-bottom">
+                        <template x-for="(tab, index) in tabs" :key="index">
+                            <li class="h-1 mx-2 sm:mx-4 overflow-hidden cursor-pointer rounded transition"
+                                :class="activeTab===index ? 'bg-blue-500 text-white' : ' text-gray-500'"
+                                @click="activeTab = index" x-text="tab"></li>
+                        </template>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div id="main0" class="w-full flex-1 hidden">
+            <div class="flex flex-1 flex-wrap justify-center w-full">
+                <div class="w-full mt-8 px-5 relative">
+                    <button type="button" data-title='Add Section' data-placement="bottom"
+                        class="rounded-full bg-blue-800 w-16 h-16 absolute -top-8 left-1/2 transform -translate-x-1/2 flex items-center justify-center cursor-pointer"><i
+                            class="material-icons text-3xl text-white">add</i></button>
+                    <div class='bg-white w-full h-screen rounded-xl'>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div id="main1" class="w-full flex-1 hidden">
+            <div class="flex flex-1 flex-wrap justify-center w-full">
+                <div class="w-full px-5">
+                    <div class='overflow-x-auto w-full'>
+                        <!-- Table -->
+                        <table
+                            class='table-auto w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300 overflow-hidden'>
+                            <thead class="bg-gray-50">
+                                <tr class="text-gray-500 text-left">
+                                    <th class="font-semibold text-md px-6 py-4">
+                                        Pages (4)
+                                    </th>
+                                    <th class="font-semibold text-md px-6 py-4">
+                                        Device
+                                    </th>
+                                    <th class="font-semibold text-md px-6 py-4">
+                                        Created
+                                    </th>
+                                    <th class="font-semibold text-md px-6 py-4">
+
+                                    </th>
+                                    <th class="font-semibold text-md py-4">
+
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4">
+                                        <div>
+                                            Raymond Kramer
+                                        </div>
+                                        <div class="text-sm text-gray-400 -mt-2">
+                                            raymond.kramer@gmail.com
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-green-400 mr-2 h-full flex flex-row items-start align-middle">
+                                            <span class="text-black font-bold">Safari Mac OS 10.15.6</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div>
+                                            5 days ago
+                                        </div>
+                                        <div class="text-sm text-gray-400 -mt-1">
+                                            4/14/2021 @ 04:05 PM
+                                        </div>
+                                    </td>
+                                    <td class="py-4">
+                                        <div class="text-blue-600 font-semibold cursor-pointer hover:underline">
+                                            cap-slipped-calmly.com
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6 text-center">
+                                        <div class="text-gray-400 font-semibold cursor-pointer hover:underline">
+                                            <i class="material-icons text-3xl text-gray-400 mr-3">more_horiz</i>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4">
+                                        <div>
+                                            Raymond Kramer
+                                        </div>
+                                        <div class="text-sm text-gray-400 -mt-2">
+                                            raymond.kramer@gmail.com
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-green-400 mr-2 h-full flex flex-row items-start align-middle">
+                                            <span class="text-black font-bold">Safari Mac OS 10.15.6</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div>
+                                            5 days ago
+                                        </div>
+                                        <div class="text-sm text-gray-400 -mt-1">
+                                            4/14/2021 @ 04:05 PM
+                                        </div>
+                                    </td>
+                                    <td class="py-4">
+                                        <div class="text-blue-600 font-semibold cursor-pointer hover:underline">
+                                            cap-slipped-calmly.com
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6 text-center">
+                                        <div class="text-gray-400 font-semibold cursor-pointer hover:underline">
+                                            <i class="material-icons text-3xl text-gray-400 mr-3">more_horiz</i>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4">
+                                        <div>
+                                            Raymond Kramer
+                                        </div>
+                                        <div class="text-sm text-gray-400 -mt-2">
+                                            raymond.kramer@gmail.com
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-green-400 mr-2 h-full flex flex-row items-start align-middle">
+                                            <span class="text-black font-bold">Safari Mac OS 10.15.6</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div>
+                                            5 days ago
+                                        </div>
+                                        <div class="text-sm text-gray-400 -mt-1">
+                                            4/14/2021 @ 04:05 PM
+                                        </div>
+                                    </td>
+                                    <td class="py-4">
+                                        <div class="text-blue-600 font-semibold cursor-pointer hover:underline">
+                                            cap-slipped-calmly.com
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6 text-center">
+                                        <div class="text-gray-400 font-semibold cursor-pointer hover:underline">
+                                            <i class="material-icons text-3xl text-gray-400 mr-3">more_horiz</i>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4">
+                                        <div>
+                                            Raymond Kramer
+                                        </div>
+                                        <div class="text-sm text-gray-400 -mt-2">
+                                            raymond.kramer@gmail.com
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-green-400 mr-2 h-full flex flex-row items-start align-middle">
+                                            <span class="text-black font-bold">Safari Mac OS 10.15.6</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div>
+                                            5 days ago
+                                        </div>
+                                        <div class="text-sm text-gray-400 -mt-1">
+                                            4/14/2021 @ 04:05 PM
+                                        </div>
+                                    </td>
+                                    <td class="py-4">
+                                        <div class="text-blue-600 font-semibold cursor-pointer hover:underline">
+                                            cap-slipped-calmly.com
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6 text-center">
+                                        <div class="text-gray-400 font-semibold cursor-pointer hover:underline">
+                                            <i class="material-icons text-3xl text-gray-400 mr-3">more_horiz</i>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4">
+                                        <div>
+                                            Raymond Kramer
+                                        </div>
+                                        <div class="text-sm text-gray-400 -mt-2">
+                                            raymond.kramer@gmail.com
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-green-400 mr-2 h-full flex flex-row items-start align-middle">
+                                            <span class="text-black font-bold">Safari Mac OS 10.15.6</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div>
+                                            5 days ago
+                                        </div>
+                                        <div class="text-sm text-gray-400 -mt-1">
+                                            4/14/2021 @ 04:05 PM
+                                        </div>
+                                    </td>
+                                    <td class="py-4">
+                                        <div class="text-blue-600 font-semibold cursor-pointer hover:underline">
+                                            cap-slipped-calmly.com
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6 text-center">
+                                        <div class="text-gray-400 font-semibold cursor-pointer hover:underline">
+                                            <i class="material-icons text-3xl text-gray-400 mr-3">more_horiz</i>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Pages container Edd -->
+
+
+    </div>
+
+    <script>
+        tippy('button', {
+            content: (reference) => '<div >'+reference.getAttribute('data-title')+'</div>',
+            onMount(instance) {
+                instance.popperInstance.setOptions({
+                    placement: instance.reference.getAttribute('data-placement')
+                });
+            },
+            allowHTML: true,
+        });
+        function setup() {
+            return {
+                activeTab: 0,
+                tabs: [
+                    "Design",
+                    "Page Configuration",
+                ]
+            };
+        };
+        var tabNames = [
+            'Design',
+            'Page Configuration',
+        ]
+        function tabclick(tab, index, activeTab) {
+            console.log(tab, index, activeTab)
+
+            if (index == activeTab) {
+                console.log(index, activeTab, "actived +++++++++++++")
+                $('#main' + index).show()
+                if (index == 0) {
+                    $("#nav-bar-2").show();
+                }
+                if (index == 1) {
+                    console.log("show drop-1")
+                    $("#drop").show();
+                    $("#nav-bar-2").show();
+                } else {
+                    $("#drop").hide();
+                }
+                if (index == 2) {
+                    $("#nav-bar-1").hide();
+                    $("#nav-bar-2").hide();
+                    console.log("hide Add new page")
+                    $("#page-title").hide();
+                } else {
+                    $("#nav-bar-1").show();
+                    // $("#nav-bar-2").show();
+                    $("#page-title").show();
+                }
+
+                if (index == 3) {
+                    $("#static-menu").show();
+                    $("#general-menu").hide();
+                    $("#nav-bar-2").hide();
+                } else {
+                    // $("#nav-bar-2").show();
+                    $("#static-menu").hide();
+                    $("#general-menu").show();
+                }
+
+            } else {
+                $('#main' + index).hide()
+            }
+        }
+    </script>
+
+</body>
+
+</html>

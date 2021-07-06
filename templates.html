@@ -1,0 +1,468 @@
+<!--This template is based on: https://dribbble.com/shots/6531694-Marketing-Dashboard by Gregoire Vella -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Templates</title>
+    <meta name="description" content="description here">
+    <meta name="keywords" content="keywords,here">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/custom-color.css">
+    <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <link href="http://fonts.cdnfonts.com/css/circular-std-book" rel="stylesheet">
+    <!--Replace with your tailwind.css once created-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <style>
+        .nunito {
+            font-family: 'nunito', font-sans;
+        }
+
+        .border-b-1 {
+            border-bottom-width: 1px;
+        }
+
+        hover\:border-none:hover {
+            border-style: none;
+        }
+
+        #sidebar:hover span {
+            opacity: 1;
+        }
+
+        .ct-series-a .ct-line {
+            /* Set the colour of this series line */
+            stroke: #013281;
+        }
+
+        .ct-series-b .ct-line {
+            /* Set the colour of this series line */
+            stroke: #1E86FF;
+        }
+
+        .ct-series-c .ct-line {
+            /* Set the colour of this series line */
+            stroke: #FAC345;
+        }
+
+        body {
+            font-family: 'Circular Std Book' !important;
+        }
+
+        @media screen and (max-width: 1145px) {
+            #search {
+                width: auto;
+            }
+        }
+
+        @media screen and (max-width: 639px) {
+            #search {
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 585px) {
+            #search {
+                width: 100%;
+            }
+        }
+    </style>
+
+</head>
+
+<body class="flex h-screen bg-gray-100">
+
+    <!-- Side bar-->
+    <div class="flex flex-col items-center w-16 pb-4 overflow-auto border-r custom-bg-blue-900 pt-6 hidden lg:flex">
+        <a class="flex items-center justify-center flex-shrink-0 w-full h-16 " href="#">
+            <img src="./assets/images/sm-logo.png" />
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M15.7138 6.8382C18.1647 9.28913 18.1647 13.2629 15.7138 15.7138C13.2629 18.1647 9.28913 18.1647 6.8382 15.7138C4.38727 13.2629 4.38727 9.28913 6.8382 6.8382C9.28913 4.38727 13.2629 4.38727 15.7138 6.8382"
+                    stroke="#B2C1D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M19 19L15.71 15.71" stroke="#B2C1D9" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300"
+            href="./index.html">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M16.842 5.29908L10.842 0.632082C9.7586 -0.210694 8.2414 -0.210694 7.158 0.632082L1.158 5.29908H1.158C0.4276 5.86726 0.00028 6.74071 0 7.66608V15C-2.50178e-07 16.6569 1.34315 18 3 18H15C16.6569 18 18 16.6569 18 15V7.66608V7.66596C17.9997 6.74059 17.5723 5.86715 16.8419 5.29901L16.842 5.29908Z"
+                    fill="#B2C1D9" />
+            </svg>
+
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
+            <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M3.24866 1H6.24866C7.07666 1 7.74866 1.672 7.74866 2.5V8.5C7.74866 9.328 7.07666 10 6.24866 10H3.24866C2.42066 10 1.74866 9.328 1.74866 8.5V2.5C1.74866 1.672 2.42066 1 3.24866 1Z"
+                    fill="#B2C1D9" stroke="#B2C1D9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M3.24866 14.5H6.24866C7.07666 14.5 7.74866 15.172 7.74866 16V17.5C7.74866 18.328 7.07666 19 6.24866 19H3.24866C2.42066 19 1.74866 18.328 1.74866 17.5V16C1.74866 15.172 2.42066 14.5 3.24866 14.5Z"
+                    fill="#B2C1D9" stroke="#B2C1D9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M16.7472 19H13.7472C12.9192 19 12.2472 18.328 12.2472 17.5V11.5C12.2472 10.672 12.9192 10 13.7472 10H16.7472C17.5752 10 18.2472 10.672 18.2472 11.5V17.5C18.2472 18.328 17.5752 19 16.7472 19Z"
+                    fill="#B2C1D9" stroke="#B2C1D9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M16.7472 5.5H13.7472C12.9192 5.5 12.2472 4.828 12.2472 4V2.5C12.2472 1.672 12.9192 1 13.7472 1H16.7472C17.5752 1 18.2472 1.672 18.2472 2.5V4C18.2472 4.828 17.5752 5.5 16.7472 5.5Z"
+                    fill="#B2C1D9" stroke="#B2C1D9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
+            <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M18.5 18H3.5C2.39543 18 1.5 17.1046 1.5 16V2V2C1.5 0.89543 2.39543 0 3.5 0H18.5C19.6046 -4.82823e-08 20.5 0.89543 20.5 2V16C20.5 17.1046 19.6046 18 18.5 18Z"
+                    fill="white" />
+                <path d="M1.5 5H20.5" stroke="#013281" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+
+
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-auto rounded hover:bg-gray-300" href="#">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M1 14V6V6C1 3.23858 3.23858 1 6 1H14C16.7614 1 19 3.23858 19 6V14C19 16.7614 16.7614 19 14 19H6H6C3.23858 19 1 16.7614 1 14H1Z"
+                    fill="white" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M8 8V8C8 6.89543 8.89543 6 10 6C11.1046 6 12 6.89543 12 8C12 9.10457 11.1046 10 10 10"
+                    stroke="#013281" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M10 11.5V10" stroke="#013281" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path
+                    d="M9.99995 13.95V13.95C9.97234 13.95 9.94995 13.9724 9.94995 14C9.94995 14.0276 9.97234 14.05 9.99995 14.05C10.0276 14.05 10.05 14.0276 10.05 14C10.05 13.9724 10.0276 13.95 9.99995 13.95V13.95"
+                    stroke="#013281" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 mt-3 h-10 rounded hover:bg-gray-300" href="#">
+            <img class="p-1 rounded-full" src="assets/images/avatar2.png" />
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 mt-3 h-10 rounded hover:bg-gray-300" href="#">
+            <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M9 17.392V5.50301C9 4.81301 8.645 4.17201 8.06 3.80701L4.06 1.30701C2.728 0.475012 1 1.43201 1 3.00301V14.891C1 15.581 1.355 16.222 1.94 16.587L5.94 19.087C7.272 19.92 9 18.962 9 17.392Z"
+                    fill="white" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M13 9H19" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M17 11L19 9L17 7" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M9 17H13C14.105 17 15 16.105 15 15V14" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M15 4V3C15 1.895 14.105 1 13 1H3" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </a>
+    </div>
+
+    <div class="h-full overflow-y-scroll flex flex-row flex-wrap flex-1 flex-grow content-start custom-m-bg-color">
+        <!-- Navbar Start -->
+        <div class="h-auto md:h-20 w-full flex flex-wrap">
+            <nav id="mobile-menu"
+                class="w-full h-16 bg-white md:max-w-md flex items-center order-1 md:order-1 md:hidden mb-4">
+                <div class=" w-full flex items-center px-6 bg-white">
+                    <h1 class="text-lg font-bold text-xl md:text-3xl text-black italic">Phonesites</h1>
+                    <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 ml-auto rounded hover:bg-gray-300"
+                        href="#">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M15.7138 6.8382C18.1647 9.28913 18.1647 13.2629 15.7138 15.7138C13.2629 18.1647 9.28913 18.1647 6.8382 15.7138C4.38727 13.2629 4.38727 9.28913 6.8382 6.8382C9.28913 4.38727 13.2629 4.38727 15.7138 6.8382"
+                                stroke="#B2C1D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M19 19L15.71 15.71" stroke="#B2C1D9" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                    <a class="flex items-center justify-center w-10 h-10 rounded hover:bg-gray-300" href="#">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="7" width="16" height="2" rx="1" fill="#B2C1D9" />
+                            <rect x="4" y="14" width="16" height="2" rx="1" fill="#B2C1D9" />
+                        </svg>
+                    </a>
+                </div>
+            </nav>
+            <nav id="header" class="w-full h-10 md:h-20 md:max-w-md flex items-center mb-3 md:mb-0 order-2 md:order-2">
+                <div class="px-2 w-full flex items-center px-6">
+                    <h1 class="text-lg font-bold text-xl md:text-3xl text-black">Templates</h1>
+                    <span
+                        class="font-extrabold inline-flex items-center justify-center px-2 py-1 ml-10 mr-2 text-xs leading-none text-white bg-yellow-400 rounded-lg relative">
+                        <div class="bg-yellow-400 mr-2 h-3 w-3 rounded-md transform rotate-45"
+                            style="position: absolute; left: -6px">
+                        </div>
+                        <span
+                            class="font-semibold inline-flex items-center justify-center px-1 py-1 mr-2 leading-none text-white bg-yellow-500 rounded-lg">12
+                            d</span>
+                        Upgrade
+                    </span>
+                </div>
+
+            </nav>
+        </div>
+
+        <div class="w-full flex items-center flex-wrap px-6">
+
+            <nav id="search" class="h-16 w-full sm:w-auto lg:w-full flex-shrink md:max-w-md flex items-center order-2 md:order-2">
+                <div class="w-full flex rounded-lg h-14 border-grey-light border bg-white">
+                    <button>
+                        <span class="md:w-auto flex justify-end items-center text-grey p-2 mx-1 sm:mx-2 md:mx-3">
+                            <i class="material-icons text-3xl text-gray-300">search</i>
+                        </span>
+                    </button>
+                    <input class="focus:outline-none w-full md:w-full rounded mr-2 md:mr-4" type="text"
+                        placeholder="Search Templates">
+                </div>
+            </nav>
+            <nav id="header1" class="sm:block flex flex-row-reverse justify-between w-full sm:w-auto flex-shrink-0 items-center ml-auto mr-0 md:mr-2 order-3 md:order-3">
+                <div id="template-type-button" onclick="toggleTemplateType()"
+                    class="order-4 sm:order-5 relative inline-flex items-center bg-white rounded-md pl-3 w-48 sm:w-20 lg:w-auto h-12 mr-0 sm:mr-3 cursor-pointer">
+                    <svg width="24" height="24" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M4.182 5H15.818C17.5754 5 19 6.42463 19 8.182V16C19 17.6568 17.6569 19 16 19H4H4C2.34315 19 1 17.6568 1 16V8.182C1 6.42463 2.42463 5 4.182 5L4.182 5Z"
+                            fill="#B2C1D9" />
+                        <path d="M19 9C14.0294 11.6667 5.9706 11.6667 1 9" stroke="white" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M6 7V3V3C6 1.89543 6.89543 1 8 1H12V1C13.1046 1 14 1.89543 14 3V7" stroke="#B2C1D9"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <svg class="w-2.5 absolute top-0 font-bold right-0 mt-5 mr-4 pointer-events-none"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232">
+                        <path
+                            d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
+                            fill="#648299" fill-rule="nonzero" />
+                    </svg>
+                    <div class="text-lg pl-4 pr-12 w-48 sm:w-20 lg:w-auto sm:hidden lg:block">Real-estate</div>
+                    <div id="template-type-list"
+                        class="right-0 absolute w-48 bg-white shadow-xl rounded-tl-lg rounded-b-lg overflow-hidden top-16 hidden">
+                        <div class="hover:bg-gray-300 bg-white flex items-center pl-2 h-12 cursor-pointer">
+                            Marketing
+                        </div>
+                        <div class="hover:bg-gray-300 bg-white flex items-center pl-2 h-12 cursor-pointer">
+                            Retail
+                        </div>
+                    </div>
+                </div>
+                <div id="filter-type-button"
+                    class="order-5 sm:order-4 relative inline-flex items-center bg-white rounded-md pl-3 w-20 lg:w-auto h-12 hover:cursor-pointer"
+                    onclick="tobbleFilterMenu()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M19 21H5C3.895 21 3 20.105 3 19V5C3 3.895 3.895 3 5 3H19C20.105 3 21 3.895 21 5V19C21 20.105 20.105 21 19 21Z"
+                            fill="#B2C1D9" stroke="#B2C1D9" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M9 7V9" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M9 12V17" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M15 7V12" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M15 15V17" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path
+                            d="M10 12H8C7.448 12 7 11.552 7 11V10C7 9.448 7.448 9 8 9H10C10.552 9 11 9.448 11 10V11C11 11.552 10.552 12 10 12Z"
+                            fill="white" />
+                        <path
+                            d="M16 15H14C13.448 15 13 14.552 13 14V13C13 12.448 13.448 12 14 12H16C16.552 12 17 12.448 17 13V14C17 14.552 16.552 15 16 15Z"
+                            fill="white" />
+                    </svg>
+
+                    <svg class="w-2.5 absolute top-0 font-bold right-0 mt-5 mr-4 pointer-events-none"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232">
+                        <path
+                            d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
+                            fill="#648299" fill-rule="nonzero" />
+                    </svg>
+                    <div class="text-lg pl-4 pr-12 hidden lg:block">Newest</div>
+                    <div id="filter-type-list"
+                        class="left-0 sm:right-0 absolute w-48 lg:w-full bg-white shadow-xl rounded-tl-lg rounded-b-lg overflow-hidden top-16 hidden">
+                        <div
+                            class="hover:bg-gray-300 w-full bg-white flex items-center pl-2 w-auto h-12 cursor-pointer">
+                            Bigest
+                        </div>
+                        <div
+                            class="hover:bg-gray-300 w-full bg-white flex items-center pl-2 w-auto h-12 cursor-pointer">
+                            Newest
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <nav id="header1" class="order-1 w-full md:w-auto md:order-3 md-shrink-0">
+                <div class="flex h-16 md:h-full justify-between items-center">
+                    <div class="flex items-center justify-end just w-full custom-m-bg-color">
+                        <button
+                            class="ml-auto flex items-center justify-center bg-blue-500 hover:bg-blue-900 font-semibold text-white py-3 px-4 rounded-lg w-full 2xl:w-auto xl:w-auto lg:w-auto md:w-auto">
+                            Create New Website
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Navbar End -->
+
+        <!--Graph Content Start -->
+        <div id="main-content" class="w-full flex-1">
+
+            <div class="flex flex-1 flex-wrap justify-center w-full">
+                <div class="grid w-full grid-cols-1 lg:grid-cols-2 gap-4 px-6 h-auto">
+                    <div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 border-transparent bg-white shadow-md overflow-hidden rounded-2xl mt-2 mb-3 h-auto">
+                        <div class="flex-shrink-0 w-full h-full">
+                            <img class="w-full h-full" src="assets/images/template5.png" />
+                        </div>
+                        <div class="py-7 px-7 sm:pr-7">
+                            <div class="flex justify-between items-center mb-8">
+                                <div class="p-2 rounded-lg bg-gray-300 text-blue-800 font-bold">Marketing</div>
+                                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.9166 18.8606V18.8606C5.33257 19.1739 4.60517 18.9544 4.2919 18.3704C4.1656 18.1349 4.1215 17.864 4.1666 17.6006L5.0346 12.5776L1.3586 9.01863V9.01863C0.886066 8.55393 0.879712 7.79416 1.34441 7.32163C1.52797 7.13496 1.76755 7.01345 2.0266 6.97562L7.1086 6.24262L9.3786 1.66862V1.66862C9.67774 1.07105 10.4047 0.829124 11.0022 1.12826C11.236 1.24528 11.4256 1.43486 11.5426 1.66862L13.8126 6.24262L18.8946 6.97562V6.97562C19.5504 7.07139 20.0044 7.68064 19.9086 8.33643C19.8708 8.59548 19.7493 8.83506 19.5626 9.01862L15.8846 12.5756L16.7526 17.5986V17.5986C16.8657 18.2517 16.4279 18.8727 15.7749 18.9858C15.5107 19.0315 15.2388 18.9874 15.0026 18.8606L10.4586 16.4916L5.9166 18.8606Z" stroke="#B2C1D9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    
+                            </div>
+                            <div class="mb-3 flex items-center justify-between">
+                                <div class="text-2xl font-semibold text-blue-900">Car buyers are saving thousands with these 3 simple tips</div>
+                            </div>
+                            <div class="mb-8 text-gray-400 mb-14">
+                                One page squeeze: "See These 3 Simple Things Dealers Don’t Want You To know That Can...
+                            </div>
+                            <div class="flex flex-row items-center">
+                                <img src="assets/images/avatar2.png" class="rounded-full" />
+                                <div class="ml-3">
+                                    <div class="text-blue-900">Anny Thomas</div>
+                                    <div class="text-gray-400">Designer</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 border-transparent bg-white shadow-md overflow-hidden rounded-2xl mt-2 mb-3 h-auto">
+                        <div class="flex-shrink-0 w-full h-full">
+                            <img class="w-full h-full" src="assets/images/template6.png" />
+                        </div>
+                        <div class="py-7 px-7 sm:pr-7">
+                            <div class="flex justify-between items-center mb-8">
+                                <div class="p-2 rounded-lg bg-gray-300 text-blue-800 font-bold">Marketing</div>
+                                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.9166 18.8606V18.8606C5.33257 19.1739 4.60517 18.9544 4.2919 18.3704C4.1656 18.1349 4.1215 17.864 4.1666 17.6006L5.0346 12.5776L1.3586 9.01863V9.01863C0.886066 8.55393 0.879712 7.79416 1.34441 7.32163C1.52797 7.13496 1.76755 7.01345 2.0266 6.97562L7.1086 6.24262L9.3786 1.66862V1.66862C9.67774 1.07105 10.4047 0.829124 11.0022 1.12826C11.236 1.24528 11.4256 1.43486 11.5426 1.66862L13.8126 6.24262L18.8946 6.97562V6.97562C19.5504 7.07139 20.0044 7.68064 19.9086 8.33643C19.8708 8.59548 19.7493 8.83506 19.5626 9.01862L15.8846 12.5756L16.7526 17.5986V17.5986C16.8657 18.2517 16.4279 18.8727 15.7749 18.9858C15.5107 19.0315 15.2388 18.9874 15.0026 18.8606L10.4586 16.4916L5.9166 18.8606Z" stroke="#B2C1D9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    
+                            </div>
+                            <div class="mb-3 flex items-center justify-between">
+                                <div class="text-2xl font-semibold text-blue-900">Car buyers are saving thousands with these 3 simple tips</div>
+                            </div>
+                            <div class="mb-8 text-gray-400 mb-14">
+                                One page squeeze: "See These 3 Simple Things Dealers Don’t Want You To know That Can...
+                            </div>
+                            <div class="flex flex-row items-center">
+                                <img src="assets/images/avatar2.png" class="rounded-full" />
+                                <div class="ml-3">
+                                    <div class="text-blue-900">Anny Thomas</div>
+                                    <div class="text-gray-400">Designer</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 border-transparent bg-white shadow-md overflow-hidden rounded-2xl mt-2 mb-3 h-auto">
+                        <div class="flex-shrink-0 w-full h-full">
+                            <img class="w-full h-full" src="assets/images/template7.png" />
+                        </div>
+                        <div class="py-7 px-7 sm:pr-7">
+                            <div class="flex justify-between items-center mb-8">
+                                <div class="p-2 rounded-lg bg-gray-300 text-blue-800 font-bold">Marketing</div>
+                                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.9166 18.8606V18.8606C5.33257 19.1739 4.60517 18.9544 4.2919 18.3704C4.1656 18.1349 4.1215 17.864 4.1666 17.6006L5.0346 12.5776L1.3586 9.01863V9.01863C0.886066 8.55393 0.879712 7.79416 1.34441 7.32163C1.52797 7.13496 1.76755 7.01345 2.0266 6.97562L7.1086 6.24262L9.3786 1.66862V1.66862C9.67774 1.07105 10.4047 0.829124 11.0022 1.12826C11.236 1.24528 11.4256 1.43486 11.5426 1.66862L13.8126 6.24262L18.8946 6.97562V6.97562C19.5504 7.07139 20.0044 7.68064 19.9086 8.33643C19.8708 8.59548 19.7493 8.83506 19.5626 9.01862L15.8846 12.5756L16.7526 17.5986V17.5986C16.8657 18.2517 16.4279 18.8727 15.7749 18.9858C15.5107 19.0315 15.2388 18.9874 15.0026 18.8606L10.4586 16.4916L5.9166 18.8606Z" stroke="#B2C1D9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    
+                            </div>
+                            <div class="mb-3 flex items-center justify-between">
+                                <div class="text-2xl font-semibold text-blue-900">Car buyers are saving thousands with these 3 simple tips</div>
+                            </div>
+                            <div class="mb-8 text-gray-400 mb-14">
+                                One page squeeze: "See These 3 Simple Things Dealers Don’t Want You To know That Can...
+                            </div>
+                            <div class="flex flex-row items-center">
+                                <img src="assets/images/avatar2.png" class="rounded-full" />
+                                <div class="ml-3">
+                                    <div class="text-blue-900">Anny Thomas</div>
+                                    <div class="text-gray-400">Designer</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 border-transparent bg-white shadow-md overflow-hidden rounded-2xl mt-2 mb-3 h-auto">
+                        <div class="flex-shrink-0 w-full h-full">
+                            <img class="w-full h-full" src="assets/images/template8.png" />
+                        </div>
+                        <div class="py-7 px-7 sm:pr-7">
+                            <div class="flex justify-between items-center mb-8">
+                                <div class="p-2 rounded-lg bg-gray-300 text-blue-800 font-bold">Marketing</div>
+                                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.9166 18.8606V18.8606C5.33257 19.1739 4.60517 18.9544 4.2919 18.3704C4.1656 18.1349 4.1215 17.864 4.1666 17.6006L5.0346 12.5776L1.3586 9.01863V9.01863C0.886066 8.55393 0.879712 7.79416 1.34441 7.32163C1.52797 7.13496 1.76755 7.01345 2.0266 6.97562L7.1086 6.24262L9.3786 1.66862V1.66862C9.67774 1.07105 10.4047 0.829124 11.0022 1.12826C11.236 1.24528 11.4256 1.43486 11.5426 1.66862L13.8126 6.24262L18.8946 6.97562V6.97562C19.5504 7.07139 20.0044 7.68064 19.9086 8.33643C19.8708 8.59548 19.7493 8.83506 19.5626 9.01862L15.8846 12.5756L16.7526 17.5986V17.5986C16.8657 18.2517 16.4279 18.8727 15.7749 18.9858C15.5107 19.0315 15.2388 18.9874 15.0026 18.8606L10.4586 16.4916L5.9166 18.8606Z" stroke="#B2C1D9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    
+                            </div>
+                            <div class="mb-3 flex items-center justify-between">
+                                <div class="text-2xl font-semibold text-blue-900">Car buyers are saving thousands with these 3 simple tips</div>
+                            </div>
+                            <div class="mb-8 text-gray-400 mb-14">
+                                One page squeeze: "See These 3 Simple Things Dealers Don’t Want You To know That Can...
+                            </div>
+                            <div class="flex flex-row items-center">
+                                <img src="assets/images/avatar2.png" class="rounded-full" />
+                                <div class="ml-3">
+                                    <div class="text-blue-900">Anny Thomas</div>
+                                    <div class="text-gray-400">Designer</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--Graph Content End -->
+    </div>
+
+</body>
+<script>
+    $(window).click(function () {
+        if ($('#template-type-list').css('display') == 'block') {
+            $("#template-type-list").toggle();
+        }
+
+        if ($('#filter-type-list').css('display') == 'block') {
+            $("#filter-type-list").toggle();
+        }
+    })
+    $('#template-type-button').click(function (event) {
+        event.stopPropagation();
+    });
+
+    $('#template-type-list').click(function (event) {
+        event.stopPropagation();
+    });
+    function toggleTemplateType() {
+        console.log();
+        $("#template-type-list").toggle();
+    }
+
+    $('#filter-type-button').click(function (event) {
+        event.stopPropagation();
+    });
+
+    $('#filter-type-list').click(function (event) {
+        event.stopPropagation();
+    });
+    function tobbleFilterMenu() {
+        $("#filter-type-list").toggle();
+    }
+</script>
+
+</html>

@@ -1,0 +1,801 @@
+<!--This template is based on: https://dribbble.com/shots/6531694-Marketing-Dashboard by Gregoire Vella -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Websites</title>
+    <meta name="description" content="description here">
+    <meta name="keywords" content="keywords,here">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/custom-color.css">
+    <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <link href="http://fonts.cdnfonts.com/css/circular-std-book" rel="stylesheet">
+    <!--Replace with your tailwind.css once created-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" defer></script>
+    <style>
+        .nunito {
+            font-family: 'nunito', font-sans;
+        }
+
+        .border-b-1 {
+            border-bottom-width: 1px;
+        }
+
+        hover\:border-none:hover {
+            border-style: none;
+        }
+
+        #sidebar:hover span {
+            opacity: 1;
+        }
+
+        .ct-series-a .ct-line {
+            /* Set the colour of this series line */
+            stroke: #013281;
+        }
+
+        .ct-series-b .ct-line {
+            /* Set the colour of this series line */
+            stroke: #1E86FF;
+        }
+
+        .ct-series-c .ct-line {
+            /* Set the colour of this series line */
+            stroke: #FAC345;
+        }
+
+        body {
+            font-family: 'Circular Std Book' !important;
+        }
+    </style>
+
+</head>
+
+<body class="flex h-screen bg-gray-100">
+
+    <!-- Side bar-->
+    <div class="flex flex-col items-center w-16 pb-4 overflow-auto border-r custom-bg-blue-900 pt-6 hidden lg:flex">
+        <a class="flex items-center justify-center flex-shrink-0 w-full h-16 " href="#">
+            <img src="./assets/images/sm-logo.png" />
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M15.7138 6.8382C18.1647 9.28913 18.1647 13.2629 15.7138 15.7138C13.2629 18.1647 9.28913 18.1647 6.8382 15.7138C4.38727 13.2629 4.38727 9.28913 6.8382 6.8382C9.28913 4.38727 13.2629 4.38727 15.7138 6.8382"
+                    stroke="#B2C1D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M19 19L15.71 15.71" stroke="#B2C1D9" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M16.842 5.29908L10.842 0.632082C9.7586 -0.210694 8.2414 -0.210694 7.158 0.632082L1.158 5.29908H1.158C0.4276 5.86726 0.00028 6.74071 0 7.66608V15C-2.50178e-07 16.6569 1.34315 18 3 18H15C16.6569 18 18 16.6569 18 15V7.66608V7.66596C17.9997 6.74059 17.5723 5.86715 16.8419 5.29901L16.842 5.29908Z"
+                    fill="white" />
+            </svg>
+
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">
+            <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M3.24866 1H6.24866C7.07666 1 7.74866 1.672 7.74866 2.5V8.5C7.74866 9.328 7.07666 10 6.24866 10H3.24866C2.42066 10 1.74866 9.328 1.74866 8.5V2.5C1.74866 1.672 2.42066 1 3.24866 1Z"
+                    fill="#B2C1D9" stroke="#B2C1D9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M3.24866 14.5H6.24866C7.07666 14.5 7.74866 15.172 7.74866 16V17.5C7.74866 18.328 7.07666 19 6.24866 19H3.24866C2.42066 19 1.74866 18.328 1.74866 17.5V16C1.74866 15.172 2.42066 14.5 3.24866 14.5Z"
+                    fill="#B2C1D9" stroke="#B2C1D9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M16.7472 19H13.7472C12.9192 19 12.2472 18.328 12.2472 17.5V11.5C12.2472 10.672 12.9192 10 13.7472 10H16.7472C17.5752 10 18.2472 10.672 18.2472 11.5V17.5C18.2472 18.328 17.5752 19 16.7472 19Z"
+                    fill="#B2C1D9" stroke="#B2C1D9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M16.7472 5.5H13.7472C12.9192 5.5 12.2472 4.828 12.2472 4V2.5C12.2472 1.672 12.9192 1 13.7472 1H16.7472C17.5752 1 18.2472 1.672 18.2472 2.5V4C18.2472 4.828 17.5752 5.5 16.7472 5.5Z"
+                    fill="#B2C1D9" stroke="#B2C1D9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300"
+            href="./my-websites.html">
+            <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M18.5 18H3.5C2.39543 18 1.5 17.1046 1.5 16V2V2C1.5 0.89543 2.39543 0 3.5 0H18.5C19.6046 -4.82823e-08 20.5 0.89543 20.5 2V16C20.5 17.1046 19.6046 18 18.5 18Z"
+                    fill="#B2C1D9" />
+                <path d="M1.5 5H20.5" stroke="#013281" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-auto rounded hover:bg-gray-300" href="#">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M1 14V6V6C1 3.23858 3.23858 1 6 1H14C16.7614 1 19 3.23858 19 6V14C19 16.7614 16.7614 19 14 19H6H6C3.23858 19 1 16.7614 1 14H1Z"
+                    fill="white" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M8 8V8C8 6.89543 8.89543 6 10 6C11.1046 6 12 6.89543 12 8C12 9.10457 11.1046 10 10 10"
+                    stroke="#013281" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M10 11.5V10" stroke="#013281" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path
+                    d="M9.99995 13.95V13.95C9.97234 13.95 9.94995 13.9724 9.94995 14C9.94995 14.0276 9.97234 14.05 9.99995 14.05C10.0276 14.05 10.05 14.0276 10.05 14C10.05 13.9724 10.0276 13.95 9.99995 13.95V13.95"
+                    stroke="#013281" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 mt-3 h-10 rounded hover:bg-gray-300" href="#">
+            <img class="p-1 rounded-full" src="assets/images/avatar2.png" />
+        </a>
+        <a class="flex items-center justify-center flex-shrink-0 w-10 mt-3 h-10 rounded hover:bg-gray-300" href="#">
+            <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M9 17.392V5.50301C9 4.81301 8.645 4.17201 8.06 3.80701L4.06 1.30701C2.728 0.475012 1 1.43201 1 3.00301V14.891C1 15.581 1.355 16.222 1.94 16.587L5.94 19.087C7.272 19.92 9 18.962 9 17.392Z"
+                    fill="white" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M13 9H19" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M17 11L19 9L17 7" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M9 17H13C14.105 17 15 16.105 15 15V14" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M15 4V3C15 1.895 14.105 1 13 1H3" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </a>
+    </div>
+
+    <div class="h-full overflow-y-scroll flex flex-row flex-wrap flex-1 flex-grow content-start custom-m-bg-color">
+        <!-- Navbar Start -->
+        <div class="h-52 md:h-20 w-full flex flex-wrap">
+            <nav id="search" class="w-full h-16 bg-white md:max-w-md flex items-center order-1 md:order-1 md:hidden">
+                <div class=" w-full flex items-center px-6 bg-white">
+                    <h1 class="text-lg font-bold text-xl md:text-3xl text-black italic">Phonesites</h1>
+                    <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 ml-auto rounded hover:bg-gray-300"
+                        href="#">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M15.7138 6.8382C18.1647 9.28913 18.1647 13.2629 15.7138 15.7138C13.2629 18.1647 9.28913 18.1647 6.8382 15.7138C4.38727 13.2629 4.38727 9.28913 6.8382 6.8382C9.28913 4.38727 13.2629 4.38727 15.7138 6.8382"
+                                stroke="#B2C1D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M19 19L15.71 15.71" stroke="#B2C1D9" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                    <a class="flex items-center justify-center w-10 h-10 rounded hover:bg-gray-300" href="#">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="7" width="16" height="2" rx="1" fill="#B2C1D9" />
+                            <rect x="4" y="14" width="16" height="2" rx="1" fill="#B2C1D9" />
+                        </svg>
+                    </a>
+                </div>
+            </nav>
+            <nav id="header" class="w-full h-10 md:h-20 md:max-w-md flex items-center order-2 md:order-2">
+                <div class="px-2 w-full flex items-center px-6">
+                    <h1 class="text-lg font-bold text-xl md:text-3xl text-black">My Dashboard</h1>
+                    <span
+                        class="font-extrabold inline-flex items-center justify-center px-2 py-1 ml-10 mr-2 text-xs leading-none text-white bg-yellow-400 rounded-lg relative">
+                        <div class="bg-yellow-400 mr-2 h-3 w-3 rounded-md transform rotate-45"
+                            style="position: absolute; left: -6px">
+                        </div>
+                        <span
+                            class="font-semibold inline-flex items-center justify-center px-1 py-1 mr-2 leading-none text-white bg-yellow-500 rounded-lg">12
+                            d</span>
+                        Upgrade
+                    </span>
+                </div>
+
+            </nav>
+            <nav id="header1" class=" w-auto flex-1 order-3 md:order-3">
+
+                <div class="flex h-16 md:h-full justify-between items-center">
+                    <!--Menu-->
+
+                    <div class="flex items-center justify-end just px-6 w-full custom-m-bg-color">
+                        <button
+                            class="ml-auto flex items-center justify-center bg-blue-500 hover:bg-blue-900 font-semibold text-white py-3 px-4 rounded-lg w-full 2xl:w-auto xl:w-auto lg:w-auto md:w-auto">
+                            Create New Website
+                        </button>
+                    </div>
+
+                    <!-- / Menu -->
+
+                </div>
+
+            </nav>
+        </div>
+        <!-- Navbar End -->
+
+        <!--Graph Content Start -->
+        <div id="main-content" class="w-full flex-1">
+
+            <div class="flex flex-1 flex-wrap">
+
+                <div class="w-full lg:w-1/3 px-5 md:p-5 xl:max-w-6xl">
+
+                    <!--"Container" for the graphs"-->
+                    <div class="max-w-full lg:max-w-3xl xl:max-w-5xl">
+
+                        <!--Graph Card-->
+                        <div class="border-transparent bg-white shadow-md rounded-2xl p-7 mt-2 mx-2 mb-6">
+                            <div class="mb-8 flex items-center justify-between">
+                                <div class="text-2xl font-semibold">Stats</div>
+                                <div class="relative inline-flex">
+                                    <svg class="w-2.5 absolute top-0 font-bold right-0 mt-3.5 mr-2 pointer-events-none"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232">
+                                        <path
+                                            d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
+                                            fill="#648299" fill-rule="nonzero" />
+                                    </svg>
+                                    <select
+                                        class="bg-gray-200 font-bold rounded-md text-gray-600 h-8 pl-2 pr-5 focus:outline-none appearance-none">
+                                        <option>Month</option>
+                                        <option>Jan</option>
+                                        <option>Feb</option>
+                                        <option>Mar</option>
+                                        <option>Apr</option>
+                                        <option>May</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex flex-row items-center mb-3">
+                                <div class="bg-blue-400 mr-2 h-3 w-3 rounded-sm">
+                                </div>
+                                <div class="mr-4 font-bold text-sm">
+                                    Leads
+                                </div>
+                                <div class="bg-blue-600 mr-2 h-3 w-3 rounded-sm">
+                                </div>
+                                <div class="mr-4 flex-shrink-0 font-bold text-sm">
+                                    Unique visitors
+                                </div>
+                                <div class="bg-yellow-300 mr-2 h-3 w-3 rounded-sm">
+                                </div>
+                                <div class=" font-bold text-sm">
+                                    Views
+                                </div>
+                            </div>
+                            <div>
+                                <div class="ct-chart ct-golden-section" id="chart1"></div>
+                            </div>
+
+                        </div>
+                        <!--/Graph Card-->
+
+                        <div class="border-transparent bg-white shadow-md rounded-2xl p-7 mt-2 mx-2 mb-7">
+                            <div class="mb-8 flex items-center justify-between">
+                                <div class="text-2xl font-semibold">Online Learning</div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row mb-5">
+                                <div class="h-24 sm:h-16 w-full sm:w-16 bg-gray-300 rounded-md mb-3">
+                                </div>
+                                <div class="ml-4 flex flex-col">
+                                    <div class="text-xl font-bold flex justify-between items-center sm:block ">Phone
+                                        Funnels<span
+                                            class=" inline-flex items-center justify-center px-1 py-1 ml-2 mr-2 text-sm leading-none text-white bg-green-500 rounded-md">FREE</span>
+                                    </div>
+                                    <div class="text-gray-400 text-lg leading-5 mb-4">Get the newest courses and
+                                        answers...
+                                    </div>
+                                    <div class="text-blue-600 font-semibold cursor-pointer hover:underline">Start Course
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row">
+                                <div class="h-24 sm:h-16 w-full sm:w-16 bg-gray-300 rounded-md mb-3">
+                                </div>
+                                <div class="ml-4 flex flex-col">
+                                    <div class="flex justify-between items-center sm:hidden">
+                                        <div class="text-xl font-bold">Show Up And Close </div>
+                                        <div class="text-gray-400 text-md">$1,000</div>
+                                    </div>
+
+                                    <div class="hidden sm:block text-xl font-bold">Show Up And Close </div>
+                                    <div class="hidden sm:block text-gray-400 text-lg">$1,000</div>
+
+                                    <div class="text-gray-400 text-lg leading-5 mb-4">Get the newest courses and
+                                        answers...
+                                    </div>
+                                    <div class="flex flex-row items-center">
+                                        <div class="text-blue-600 font-semibold cursor-pointer hover:underline">Watch
+                                            for Free</div>
+                                        <div>
+                                            <span
+                                                class=" inline-flex items-center justify-center px-1 py-1 ml-2 mr-2 text-sm leading-none text-white bg-yellow-400 rounded-md">SWITCH
+                                                TO ANNUAL</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--/Graph Card-->
+
+                        <div class="border-transparent bg-white shadow-md rounded-2xl p-7 mt-2 mx-2 mb-5 md:mb-6">
+                            <div class="relative">
+                                <img class="absolute bottom-48 right-5" src='./assets/images/banner-tap2.png' />
+                                <img class="absolute top-56 z-10 left-5" src='./assets/images/banner-tap1.png' />
+                                <div
+                                    class="flex justify-center overflow-hidden rounded-xl transform rotate-3 bg-yellow-300 mb-7">
+                                    <img class="h-full w-1/1 min-w-max items-center"
+                                        src='./assets/images/banner-man1.png' />
+                                </div>
+                            </div>
+                            <div class="mb-5 mt-9 pt-7 flex flex-col">
+                                <div class="text-2xl font-semibold">Join Our FaceBook</div>
+                                <div class="text-2xl font-semibold">Community</div>
+                            </div>
+
+                            <div class="flex flex-row mb-5">
+                                <div class="text-gray-400 text-lg leading-6">Get the newest courses and answers to all
+                                    your questions with our online business.</div>
+                            </div>
+
+                            <button
+                                class="ml-auto flex items-center justify-center bg-gray-300 hover:bg-blue-500 font-semibold text-blue-500 py-3 px-4 rounded-lg w-full hover:text-white">
+                                Upgrade my plan
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="w-full lg:w-1/3 px-5 md:p-5 md:py-5 xl:max-w-4xl border-gray-300">
+
+                    <div class="max-w-full lg:max-w-3xl xl:max-w-5xl">
+
+                        <!--Graph Card-->
+                        <div class="border-transparent bg-white shadow-md rounded-2xl p-7 mt-2 mx-2 mb-6">
+                            <div class="mb-8 flex items-center justify-between">
+                                <div class="text-2xl font-semibold">New Leads</div>
+                                <div class="relative inline-flex">
+                                    <svg class="w-2.5 absolute top-0 font-bold right-0 mt-3.5 mr-2 pointer-events-none"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232">
+                                        <path
+                                            d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
+                                            fill="#648299" fill-rule="nonzero" />
+                                    </svg>
+                                    <select
+                                        class="bg-gray-200 font-bold rounded-md text-gray-600 h-8 pl-2 pr-5 focus:outline-none appearance-none">
+                                        <option>Month</option>
+                                        <option>Jan</option>
+                                        <option>Feb</option>
+                                        <option>Mar</option>
+                                        <option>Apr</option>
+                                        <option>May</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex flex-row items-center mb-3">
+                                <div class="mr-4 font-bold text-5xl">
+                                    500
+                                </div>
+                                <div class="text-gray-400 mr-2 h-3 w-3 flex flex-row items-start">
+                                    <span>
+                                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M13.1187 6.03955L4.28571 14.8725" stroke="#28D196"
+                                                stroke-width="1.7973" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M5.77291 5.77201L13.1159 6.02509L13.369 13.3681" stroke="#28D196"
+                                                stroke-width="1.7973" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>45%
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-transparent bg-white shadow-md rounded-2xl p-7 mt-2 mx-2 mb-6">
+                            <div class="mb-8 flex items-center justify-between">
+                                <div class="text-2xl font-semibold">Unique Visitors</div>
+                                <div class="relative inline-flex">
+                                    <svg class="w-2.5 absolute top-0 font-bold right-0 mt-3.5 mr-2 pointer-events-none"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232">
+                                        <path
+                                            d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
+                                            fill="#648299" fill-rule="nonzero" />
+                                    </svg>
+                                    <select
+                                        class="bg-gray-200 font-bold rounded-md text-gray-600 h-8 pl-2 pr-5 focus:outline-none appearance-none">
+                                        <option>Month</option>
+                                        <option>Jan</option>
+                                        <option>Feb</option>
+                                        <option>Mar</option>
+                                        <option>Apr</option>
+                                        <option>May</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex flex-row items-center mb-3">
+                                <div class="mr-4 font-bold text-5xl">
+                                    1,200
+                                </div>
+                                <div class="text-gray-400 mr-2 h-3 w-3 flex flex-row items-start">
+                                    <span>
+                                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M13.1187 6.03955L4.28571 14.8725" stroke="#28D196"
+                                                stroke-width="1.7973" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M5.77291 5.77201L13.1159 6.02509L13.369 13.3681" stroke="#28D196"
+                                                stroke-width="1.7973" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>45%
+                                </div>
+                            </div>
+                            <div class="text-gray-400 text-lg leading-6">24,200 visits total</div>
+                        </div>
+
+
+                        <!--/Graph Card-->
+
+                        <div class="border-transparent bg-white shadow-md rounded-2xl p-7 mt-2 mx-2 mb-6">
+                            <div class="mb-3 flex items-center justify-between">
+                                <div class="text-2xl font-semibold">Customized Templates</div>
+                            </div>
+                            <div class="text-gray-400 text-lg leading-5 mb-7">Get the newest courses and answers...
+                            </div>
+                            <div class="flex flex-row mb-5 flex items-center ">
+                                <div class="h-full w-1/1 min-w-max rounded-md">
+                                    <img class="h-full w-1/1 min-w-max  rounded-md"
+                                        src="./assets/images/template1.png" />
+                                </div>
+                                <div class="ml-4 flex flex-col">
+                                    <div class="text-xl font-bold">Dream Home Template for Realtors</div>
+                                </div>
+                            </div>
+                            <div class="flex flex-row mb-5 flex items-center">
+                                <div class="h-full w-1/1 min-w-max rounded-md">
+                                    <img class="h-full w-1/1 min-w-max  rounded-md"
+                                        src="./assets/images/template2.png" />
+                                </div>
+                                <div class="ml-4 flex flex-col">
+                                    <div class="text-xl font-bold">Enter to Win Ice Cream Raffle </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-row mb-5 flex items-center">
+                                <div class="h-full w-1/1 min-w-max rounded-md">
+                                    <img class="h-full w-1/1 min-w-max  rounded-md"
+                                        src="./assets/images/template3.png" />
+                                </div>
+                                <div class="ml-4 flex flex-col">
+                                    <div class="text-xl font-bold">Restaurant Business Proposal Template</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/Graph Card-->
+                        <div class="border-transparent bg-white shadow-md rounded-2xl p-7 mt-2 mx-2 mb-5 sm:mb-6">
+                            <div class="mb-8 flex items-center justify-between">
+                                <div class="text-2xl font-semibold">Corresponding Leads</div>
+                                <div class="relative inline-flex">
+                                    <svg class="w-2.5 absolute top-0 font-bold right-0 mt-3.5 mr-2 pointer-events-none"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232">
+                                        <path
+                                            d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
+                                            fill="#648299" fill-rule="nonzero" />
+                                    </svg>
+                                    <select
+                                        class="bg-gray-200 font-bold rounded-md text-gray-600 h-8 pl-2 pr-5 focus:outline-none appearance-none">
+                                        <option>Month</option>
+                                        <option>Jan</option>
+                                        <option>Feb</option>
+                                        <option>Mar</option>
+                                        <option>Apr</option>
+                                        <option>May</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex flex-row items-center mb-3">
+                                <div class="mr-4 font-bold text-5xl">
+                                    978
+                                </div>
+                                <div class="text-gray-400 mr-2 h-3 w-3 flex flex-row items-start">
+                                    <span>
+                                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M13.1187 6.03955L4.28571 14.8725" stroke="#28D196"
+                                                stroke-width="1.7973" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M5.77291 5.77201L13.1159 6.02509L13.369 13.3681" stroke="#28D196"
+                                                stroke-width="1.7973" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>45%
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-transparent bg-white shadow-md rounded-2xl p-7 mt-2 mx-2 mb-6">
+                            <div class="mb-3 flex flex-col">
+                                <div class="text-2xl font-semibold">Your Plan</div>
+                            </div>
+                            <div class="flex flex-row mb-5">
+                                <div class="text-gray-400 text-lg leading-6">You have only 15% available features on
+                                    your subscription.</div>
+                            </div>
+                            <div class="flex flex-row mb-9 justify-around">
+                                <div class="flex flex-col items-start justify-center">
+                                    <div class="text-3xl font-bold">2<span class="text-base text-gray-300">/3</span>
+                                    </div>
+                                    <div class="text-gray-400">
+                                        Domains
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-start justify-center">
+                                    <div class="text-3xl font-bold">5<span class="text-base text-gray-300">/10</span>
+                                    </div>
+                                    <div class="text-gray-400">
+                                        Pages
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-start justify-center">
+                                    <div class="text-3xl font-bold">1<span class="text-base text-gray-300">/3</span>
+                                    </div>
+                                    <div class="text-gray-400">
+                                        Website
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button
+                                class="ml-auto flex items-center justify-center bg-gray-300 hover:bg-blue-500 font-semibold text-blue-500 py-3 px-4 rounded-lg w-full hover:text-white">
+                                Join
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-1/3 px-5 md:p-5 xl:max-w-4xl border-gray-300">
+
+                    <div class="max-w-full lg:max-w-3xl xl:max-w-5xl">
+
+                        <!--Graph Card-->
+                        <div class="border-transparent bg-white shadow-md rounded-2xl p-7 mt-2 mx-2 mb-6 order-1">
+                            <div class="mb-8 flex items-center justify-between">
+                                <div class="text-2xl font-semibold">Create Your First Website</div>
+                            </div>
+                            <div class="flex flex-row items-center mb-5">
+                                <div class="mr-4 font-bold text-5xl">
+                                    17%
+                                </div>
+                            </div>
+                            <div class="flex flex-1 flex-wrap mb-3">
+                                <div class="w-1/2 px-5 text-gray-400">
+                                    <span>Home Page</span>
+                                </div>
+                                <div class="w-1/2 px-5 text-gray-400 flex items-center justify-between">
+                                    <div class="h-3 w-3/5 relative rounded-full overflow-hidden">
+                                        <div class="w-full w-1 h-full bg-gray-200 absolute"></div>
+                                        <div id="bar" class="h-full bg-blue-500 relative w-1/2"></div>
+                                    </div>
+                                    <div class="w-1/5">50%</div>
+                                </div>
+
+                            </div>
+                            <div class="flex flex-1 flex-wrap mb-3">
+                                <div class="w-1/2 px-5 text-gray-400">
+                                    <span>Thank you page</span>
+                                </div>
+                                <div class="w-1/2 px-5 text-gray-400 flex items-center justify-between">
+                                    <div class="h-3 w-3/5 relative rounded-full overflow-hidden">
+                                        <div class="w-full w-1 h-full bg-gray-200 absolute"></div>
+                                        <div id="bar" class="h-full bg-blue-500 relative w-1/5"></div>
+                                    </div>
+                                    <div class="w-1/5">20%</div>
+                                </div>
+                            </div>
+                            <div class="flex flex-1 flex-wrap mb-9">
+                                <div class="w-1/2 px-5 text-gray-400">
+                                    <span>Follow up page</span>
+                                </div>
+                                <div class="w-1/2 px-5 text-gray-400 flex items-center justify-between">
+                                    <div class="h-3 w-3/5 relative rounded-full overflow-hidden">
+                                        <div class="w-full w-1 h-full bg-gray-200 absolute"></div>
+                                        <div id="bar" class="h-full bg-blue-500 relative w-1/5"></div>
+                                    </div>
+                                    <div class="w-1/5">20%</div>
+                                </div>
+                            </div>
+                            <button
+                                class="ml-auto flex items-center justify-center bg-gray-300 hover:bg-blue-500 font-semibold text-blue-500 py-3 px-4 rounded-lg w-full hover:text-white">
+                                Continue
+                            </button>
+                        </div>
+
+                        <div class="border-transparent bg-white shadow-md rounded-2xl p-7 mt-2 mx-2 mb-6">
+                            <div class="mb-8 flex items-center flex-row">
+                                <div class=" text-2xl font-semibold">
+                                    <div class=" flex flex-row relative">
+                                        <img class="rounded-full border-4 border-white bg-yellow-400"
+                                            src="assets/images/avatar1.png" />
+                                        <img class="absolute left-3/4 rounded-full border-4 border-white"
+                                            src="assets/images/avatar2.png" />
+                                    </div>
+
+                                </div>
+                                <div class="w-2/3 ml-12 text-2xl font-semibold">Schedule a call with our Phonesites
+                                    Coach </div>
+                            </div>
+                            <button
+                                class="ml-auto flex items-center justify-center bg-gray-300 hover:bg-blue-500 font-semibold text-blue-500 hover:text-white py-3 px-4 rounded-lg w-full">
+                                Schedule a Call
+                            </button>
+                        </div>
+
+
+                        <!--/Graph Card-->
+
+                        <div class="border-transparent bg-white shadow-md rounded-2xl p-7 mt-2 mx-2 mb-6">
+                            <div class="mb-3 flex items-center justify-between">
+                                <div class="text-2xl font-semibold">Follow-up Analysis</div>
+                            </div>
+                            <div class="flex flex-1 items-center flex-col sm:flex-row">
+                                <div
+                                    class="w-full sm:w-1/2 order-2 sm:order-1 flex justify-between flex-wrap flex-row sm:block">
+                                    <div class="flex w-1/2 justify-center">
+                                        <div class="flex-shrink-0 bg-blue-700 mt-2 mr-2 h-3 w-3 rounded-sm">
+                                        </div>
+                                        <div class="flex-shrink">
+                                            <div class="font-bold text-md">50 responses</div>
+                                            <div class="text-sm text-gray-400 font-bold">1st follow up</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex w-1/2 justify-center">
+                                        <div class="flex-shrink-0 bg-blue-400 mt-2 mr-2 h-3 w-3 rounded-sm">
+                                        </div>
+                                        <div class="flex-shrink">
+                                            <div class="font-bold text-md">30 responses</div>
+                                            <div class="text-sm text-gray-400 font-bold">2nd follow up</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex w-1/2 justify-center">
+                                        <div class="flex-shrink-0 bg-yellow-500 mt-2 mr-2 h-3 w-3 rounded-sm">
+                                        </div>
+                                        <div class="flex-shrink">
+                                            <div class="font-bold text-md">20 responses</div>
+                                            <div class="text-sm text-gray-400 font-bold">3rd follow up</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-1/2 order-1 sm:order-2 relative flex items-center justify-center">
+                                    <canvas id="chart-area" width=150 height=150></canvas>
+                                    <div
+                                        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-3xl">
+                                        90</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--/Graph Card-->
+                        <div class="border-transparent bg-white shadow-md rounded-2xl p-7 mt-2 mx-2 mb-6">
+                            <div class="mb-8 flex items-center justify-between">
+                                <div class="text-2xl font-semibold">New Email Responses</div>
+
+                                <button @click="dropdownOpen = !dropdownOpen"
+                                    class="relative z-10 block rounded-md bg-gray-400 p-2 focus:outline-none">
+                                    <svg width="18" height="7" viewBox="0 0 18 7" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M1.50073 1.42188L5.60315 4.20266C7.64749 5.58847 10.3305 5.58847 12.3748 4.20266L16.4742 1.42188"
+                                            stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+
+                                </button>
+                            </div>
+                            <div class="flex flex-row items-center justify-center mb-7">
+                                <div class="font-bold text-5xl">
+                                    10
+                                </div>
+                            </div>
+                            <button
+                                class="ml-auto flex items-center justify-center bg-gray-300 hover:bg-blue-500 font-semibold text-blue-500 py-3 px-4 rounded-lg w-full hover:text-white">
+                                Check my mail
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--Graph Content End -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script>
+        /* Refer to https://gionkunz.github.io/chartist-js/examples.html for setting up the graphs */
+        var mainChart = new Chartist.Line('#chart1', {
+            labels: ['10 Apr', '', '15 Apr', '', '20 Apr', '', '25 Apr', ''],
+            series: [
+                [150, 100, 20, 190, 140, 123, 150, 140],
+                [150, 48, 98, 120, 147, 200, 130, 140],
+                [150, 140, 120, 130, 120, 140, 150, 140]
+            ]
+        }, {
+            low: 0,
+            showArea: false,
+            showPoint: false,
+            fullWidth: true
+        });
+
+        mainChart.on('draw', function (data) {
+            if (data.type === 'line' || data.type === 'area') {
+                data.element.animate({
+                    d: {
+                        begin: 1000 * data.index,
+                        dur: 1000,
+                        from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                        to: data.path.clone().stringify(),
+                        easing: Chartist.Svg.Easing.easeOutQuint
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
+
+
+        // pie chart
+
+
+        var pieData = [
+            {
+                value: 50,
+                color: "#013281",
+                highlight: "#013281",
+                label: "1st Follow up"
+            },
+            {
+                value: 20,
+                color: "#FED519",
+                highlight: "#FED519",
+                label: "3rd Follow up"
+            },
+            {
+                value: 30,
+                color: "#1E86FF",
+                highlight: "#1E86FF",
+                label: "2nd Follow up"
+            }
+        ];
+
+
+        options = {
+            //Boolean - Whether we should show a stroke on each segment
+            segmentShowStroke: true,
+
+            //String - The colour of each segment stroke
+            segmentStrokeColor: "rgba(0,0,0,0)",
+
+            //Number - The width of each segment stroke
+            segmentStrokeWidth: 1,
+
+            //Number - The percentage of the chart that we cut out of the middle
+            percentageInnerCutout: 50, // This is 0 for Pie charts
+
+            //Number - Amount of animation steps
+            animationSteps: 30,
+
+            //String - Animation easing effect
+            animationEasing: "none",
+
+            //Boolean - Whether we animate the rotation of the Doughnut
+            animateRotate: true,
+
+            //Boolean - Whether we animate scaling the Doughnut from the centre
+            animateScale: true,
+
+            //String - A legend template
+            legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+
+        }
+
+        window.onload = function () {
+            var ctx = document.getElementById("chart-area").getContext("2d");
+            window.myPie = new Chart(ctx).Pie(pieData, options);
+        }
+
+// TABLE CHART
+    </script>
+
+</body>
+
+</html>
